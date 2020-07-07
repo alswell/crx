@@ -12,5 +12,5 @@
 		"default_title": "bookmark sync",
 		"default_popup": "popup.html" 
 	},
-	"permissions": ["bookmarks"]
+	"permissions": ["bookmarks", "tabs"]
 }
