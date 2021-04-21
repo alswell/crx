@@ -9,7 +9,19 @@ document.getElementById("load").onclick=function() {
 document.getElementById("copy").onclick=function() {
 	chrome.tabs.getSelected(null, function(tab) {
 		setClipBoardData(`[${tab.title}](${tab.url})`)
-	});
+	})
+};
+
+document.getElementById("cpAll").onclick=function() {
+	chrome.windows.getCurrent({populate: true}, function (win) {
+		let tabs = ""
+		for (let i in win.tabs) {
+			let tab = win.tabs[i]
+			tabs += `- [${tab.title}](${tab.url})\n`
+		}
+		setClipBoardData(tabs)
+	})
+
 };
 
 

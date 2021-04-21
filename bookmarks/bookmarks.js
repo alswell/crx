@@ -1,10 +1,10 @@
-var md = "";
+let md = "";
 
 function printBookmarks(bookmarks, depth) {
-	var groups = new Array()
-	for (var i in bookmarks) {
-		if (bookmarks[i].children == undefined) {
-			if (bookmarks[i].title == "") {
+	let groups = new Array()
+	for (let i in bookmarks) {
+		if (bookmarks[i].children === undefined) {
+			if (bookmarks[i].title === "") {
 				md += `- ${bookmarks[i].url}\n`
 			} else {
 				md += `- [${bookmarks[i].title}](${bookmarks[i].url})\n`
@@ -13,8 +13,8 @@ function printBookmarks(bookmarks, depth) {
 			groups.push(bookmarks[i])
 		}
 	}
-	for (var i in groups) {
-		for (var j = 0; j < depth; j++) {
+	for (let i in groups) {
+		for (let j = 0; j < depth; j++) {
 			md += "#"
 		}
 		if (depth > 0) {
