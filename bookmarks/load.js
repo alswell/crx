@@ -1,8 +1,8 @@
 document.getElementById("f").onchange = function () {
 	const reader = new FileReader()
-	reader.readAsText(document.getElementById("f").files[0])
+	reader.readAsText(this.files[0])
 	reader.onload = function () {
-		console.log(this.result)
+		chrome.runtime.sendMessage(this.result)
 		document.getElementById("md").innerText = this.result
 	}
 }
