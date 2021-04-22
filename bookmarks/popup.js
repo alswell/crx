@@ -12,16 +12,30 @@ document.getElementById("copy").onclick=function() {
 	})
 };
 
+document.getElementById("cpSel").onclick=function() {
+	chrome.windows.getCurrent({}, function (win) {
+		chrome.tabs.query({highlighted: true}, function (tabs) {
+			let tmp = ""
+			for (let i = 0; i < tabs.length; ++i) {
+				if (tabs[i].windowId === win.id) {
+					let tab = tabs[i]
+					tmp += `- [${tab.title}](${tab.url})\n`
+				}
+			}
+			setClipBoardData(tmp)
+		})
+	})
+}
+
 document.getElementById("cpAll").onclick=function() {
 	chrome.windows.getCurrent({populate: true}, function (win) {
-		let tabs = ""
-		for (let i in win.tabs) {
+		let tmp = ""
+		for (let i = 0; i < win.tabs.length; ++i) {
 			let tab = win.tabs[i]
-			tabs += `- [${tab.title}](${tab.url})\n`
+			tmp += `- [${tab.title}](${tab.url})\n`
 		}
-		setClipBoardData(tabs)
+		setClipBoardData(tmp)
 	})
-
 };
 
 
