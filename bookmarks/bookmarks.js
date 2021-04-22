@@ -1,4 +1,4 @@
-let md = "";
+let md = ""
 
 function printBookmarks(bookmarks, depth) {
 	let groups = new Array()
@@ -25,11 +25,11 @@ function printBookmarks(bookmarks, depth) {
 }
 
 function getBookmarks() {
-	chrome.bookmarks.getTree(function(bookmarkArray){
-		// console.log(bookmarkArray);
+	chrome.bookmarks.getTree(function (bookmarkArray) {
+		// console.log(bookmarkArray)
 		printBookmarks(bookmarkArray, 0)
 		document.body.innerText = md
-	});
+	})
 }
 
 getBookmarks()

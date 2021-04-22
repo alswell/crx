@@ -1,18 +1,18 @@
-document.getElementById("dump").onclick=function() {
+document.getElementById("dump").onclick = function () {
 	chrome.tabs.create({url: "bookmarks.html"})
-};
+}
 
-document.getElementById("load").onclick=function() {
+document.getElementById("load").onclick = function () {
 	chrome.tabs.create({url: "load.html"})
-};
+}
 
-document.getElementById("copy").onclick=function() {
-	chrome.tabs.getSelected(null, function(tab) {
+document.getElementById("copy").onclick = function () {
+	chrome.tabs.getSelected(null, function (tab) {
 		setClipBoardData(`[${tab.title}](${tab.url})`)
 	})
-};
+}
 
-document.getElementById("cpSel").onclick=function() {
+document.getElementById("cpSel").onclick = function () {
 	chrome.windows.getCurrent({}, function (win) {
 		chrome.tabs.query({highlighted: true}, function (tabs) {
 			let tmp = ""
@@ -27,7 +27,7 @@ document.getElementById("cpSel").onclick=function() {
 	})
 }
 
-document.getElementById("cpAll").onclick=function() {
+document.getElementById("cpAll").onclick = function () {
 	chrome.windows.getCurrent({populate: true}, function (win) {
 		let tmp = ""
 		for (let i = 0; i < win.tabs.length; ++i) {
@@ -36,20 +36,20 @@ document.getElementById("cpAll").onclick=function() {
 		}
 		setClipBoardData(tmp)
 	})
-};
+}
 
 
 function setClipBoardData(text) {
 	const copy = function (e) {
-		e.preventDefault();
+		e.preventDefault()
 		if (e.clipboardData) {
-			e.clipboardData.setData('text/plain', text);
+			e.clipboardData.setData('text/plain', text)
 		} else if (window.clipboardData) {
-			window.clipboardData.setData('Text', text);
+			window.clipboardData.setData('Text', text)
 		}
-	};
-	window.addEventListener('copy', copy);
-    document.execCommand('copy');
-    window.removeEventListener('copy', copy);
+	}
+	window.addEventListener('copy', copy)
+    document.execCommand('copy')
+    window.removeEventListener('copy', copy)
 }
 
